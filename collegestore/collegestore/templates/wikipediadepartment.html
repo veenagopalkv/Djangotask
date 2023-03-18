@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% block title %}Wikipedia{% endblock %}
+{%block content %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+      <button type="submit">Search</button>
+
+<div>
+{% if result %}
+   {{result}}
+{% endif %}
+ </div>
+</form>
+{% endblock %}

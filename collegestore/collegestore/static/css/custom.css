@@ -1,0 +1,28 @@
+.container{
+position:relative;
+padding-bottom:60px;
+}
+.my_footer{
+background-color:grey;
+position:absolute;
+height:60px;
+width:100%
+}
+.my_footer p {
+padding-top:40px;
+font-size:12px;
+}
+.login_form{
+   width:400px;
+   margin:0 auto;
+
+}
+.orderconfirm{
+width:400px;
+   margin:0 auto;
+}
+.orderconfirm p
+{
+font-size:20px;
+color:blue;
+}

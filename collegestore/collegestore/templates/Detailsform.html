@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Details {% endblock %}
+{% block content %}
+
+<form method="post" enctype="multipart/form-data" data-course-url="{% url 'collegestoreapp:ajax_load_course' %}" id="personForm">
+  {% csrf_token %}
+  <!--{{ forms.as_p }} -->
+    {% for item in forms %}
+            <div class="fieldWrapper">
+                {{ item.label }} {{ item }}
+                {% if item.help_text %}
+                    {{ item.help_text|safe }}
+                {% endif %}
+            </div>
+            <br>
+        {% endfor %}
+  <input type="submit"/>
+
+
+       
+
+
+</form>
+
+<script>
+    $(document).ready(function(){
+    $("#id_department").change(function() {
+      const url=$("#personForm").attr("data-course-url");
+      const departmentId=$(this).val();
+      alert(url);
+      alert(departmentId);
+      $.ajax({
+         url:url,
+         data:{
+         'department_id':departmentId
+         },
+         success:function(data){
+         alert(data)
+         let html_data = '<option value="">---------</option>';
+                data.forEach(function (course) {
+                    html_data += `<option value="${course.id}">${course.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_course").html(html_data);
+
+
+         }
+
+        });
+        });
+         });
+
+
+
+
+
+
+</script>
+{% endblock %}
